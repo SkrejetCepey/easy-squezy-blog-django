@@ -1,0 +1,43 @@
+<header>
+	<hgroup>
+		<h1><a href={% url 'home' %}>Fictive Company Blog</a></h1>
+		<h2>a blog showcasing the übercoolness of HTML5 &amp; CSS3</h2>
+	</hgroup>
+	<nav id=global>
+		<ul>
+			<li><a href={% url 'home' %}>Home</a></li>
+			<li><a href=#>About</a></li>
+			
+			<li id=services>
+				<a href={% url 'category_list' %}>Categories</a>
+				{% if category_menu %}
+				<ul id=subMenu>
+					{% if category_menu.count < 6 %}
+						{% for item in category_menu %}
+							<li><a href={% url 'category' item %}>{{item}}</a></li>
+						{% endfor %}
+					{% endif %}
+					<!-- {% for item in category_menu %}
+						<li><a href={% url 'category' item %}>{{item}}</a></li>
+					{% endfor %} -->	
+				</ul>
+			</li>
+			{% endif %}
+			<li id=services>
+				<a href=#>Services</a>
+				<ul id=subMenu>
+					{% if user.is_authenticated %}
+						<li><a href="{% url 'add_post' %}">Make new post</a></li>
+						<li><a href="{% url 'add_category' %}">Make new category</a></li>
+						<li><a href=#>Desires</a></li>
+					{% else %}
+
+					{% endif %}
+
+				</ul>
+			</li>
+			<li><a href=#>Portfolio</a></li>
+			<li><a href="{% url 'contact' %}">Contact</a></li>
+		</ul>
+	</nav>
+</header>

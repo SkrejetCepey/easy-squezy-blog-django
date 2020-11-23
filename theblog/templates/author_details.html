@@ -1,0 +1,16 @@
+<head>
+	{% load staticfiles %}
+	<link href='{% static "styles.css" %}' rel=stylesheet />
+</head>
+
+{% include "header.html" %}
+
+<h2>You are in Author_details now!</h2>
+
+<article>
+	<p>Nickname: {{post.author}}</p>
+	<p>FIO: {{post.author.first_name}} {{post.author.last_name}}</p>
+</article>
+</br></br>
+
+<a href={% url 'home' %} class='btn red'>Back</a>

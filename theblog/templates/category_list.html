@@ -1,0 +1,19 @@
+{% extends 'bootstrap_base.html' %}
+
+<head>
+	{% load staticfiles %}
+	<link href='{% static "styles.css" %}' rel=stylesheet />
+	<title>
+		Blog categories
+	</title>
+</head>
+
+{% block body %}
+	<h1>Blog categories</h1><br/>
+
+	{% for item in category_menu_list %}
+		<h4><li><a href={% url 'category' item %}>{{item}}</a></li></h4>
+	{% endfor %}
+
+{% endblock %}
+

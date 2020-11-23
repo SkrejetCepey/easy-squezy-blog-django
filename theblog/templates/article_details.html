@@ -1,0 +1,32 @@
+<head>
+	{% load staticfiles %}
+	<link href='{% static "styles.css" %}' rel=stylesheet />
+	<title>
+        {{post.title_tag}} 
+	</title>
+</head>
+
+{% include "header.html" %}
+
+<article>
+
+	<header>
+				<div class=time>
+					<div class=year>{{ post.post_date.year }}</div>
+					<div class=date>{{ post.post_date.day }}<span> {{ post.post_date | date:'M'}} </span></div>
+				</div>
+				<h1>{{post.title}}</h1>
+				<div class=comments>38</div>
+			</header>
+	<h1></h1>
+	<small>By: {{post.author.first_name}} {{post.author.last_name}}</small></br>
+	<hr>
+	{{post.body | safe}}
+</article>
+</br></br>
+
+<a href={% url 'home' %} class='btn red'>Back</a>
+{% if user.is_authenticated and post.author.id == user.id %}
+	<a href={% url "update_post" post.pk %} class='btn red'>Edit</a>
+	<a href={% url "delete_post" post.pk %} class='btn red'>Delete</a>
+{% endif %}

@@ -1,0 +1,26 @@
+{% extends 'bootstrap_base.html' %}
+
+<head>
+	{% load staticfiles %}
+	<link href='{% static "styles.css" %}' rel=stylesheet />
+	<title>
+		Creating new blog category
+	</title>
+</head>
+
+{% block body %}
+{% if user.is_authenticated %}
+<h1>Add category</h1>
+</br></br>
+
+<div class='form_group'>
+<form method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button>Post</button>
+</div>
+	{% else %}
+		<p>You are not logging in!</p>
+	{% endif %}
+{% endblock %}
+

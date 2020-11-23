@@ -1,0 +1,26 @@
+{% extends 'bootstrap_base.html' %}
+
+<head>
+	{% load staticfiles %}
+	<link href='{% static "styles.css" %}' rel=stylesheet />
+	<title>
+		Update post
+	</title>
+</head>
+
+{% block body %}
+	{% if user.is_authenticated and post.author.id == user.id %}
+	<h1>Update post</h1>
+	</br></br>
+
+	<div class='form_group'>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button>Update</button>
+	</div>
+	{% else %}
+		<p>You are not welcome here! >:C</p>
+	{% endif %}
+{% endblock %}
+

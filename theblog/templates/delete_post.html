@@ -1,0 +1,27 @@
+{% extends 'bootstrap_base.html' %}
+
+<head>
+	{% load staticfiles %}
+	<link href='{% static "styles.css" %}' rel=stylesheet />
+	<title>
+		Delete post
+	</title>
+</head>
+
+{% block body %}
+{% if user.is_authenticated and post.author.id == user.id %}
+<h1>Delete post</h1>
+</br></br>
+<h3>Are you sure want to delete '{{ post.title }}' ?!</h3>
+<br/>
+<div class='form_group'>
+<form method="POST">
+	{% csrf_token %}
+	<strong>This will be permanently removed, keep in mind!</strong><br/><br/>
+	<button>Delete</button>
+</div>
+	{% else %}
+		<p>You are not welcome here! >:C</p>
+	{% endif %}
+{% endblock %}
+
