@@ -17,4 +17,3 @@ whichcraft==0.6.1
 whitenoise==5.2.0
 zope.event==4.5.0
 zope.interface==5.2.0
-psycopg2==2.6.2
