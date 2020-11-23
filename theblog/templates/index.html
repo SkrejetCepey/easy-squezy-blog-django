@@ -63,7 +63,7 @@
 					</header>
 				<p>{{post.body | slice:":200" | safe}}</p>
 				<footer>
-					<em>Written by:</em> <a href="{% url 'author_detail' post.author.pk %}"><strong>{{post.author.first_name}} {{post.author.last_name}} also known as '{{post.author}}'
+					<em>Written by:</em> <a href="{% url 'author_detail' post.pk %}"><strong>{{post.author.first_name}} {{post.author.last_name}} also known as '{{post.author}}'
 					</br> {{post.author.email}}</strong></a>
 					<span class=newLine><em>Tags:</em> <a class=tags href={% url 'category' post.category %}>{{post.category}}</a></span>
 
