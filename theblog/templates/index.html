@@ -30,7 +30,7 @@
 		
 
 
-		<article>
+<!-- 		<article>
 			<header>
 				<div class=time>
 					<div class=year>????</div>
@@ -43,12 +43,8 @@
 			<footer>
 				<em>Written by:</em> <strong>???????</strong>
 				<span class=newLine><em>Tags:</em> <a class=tags href=#>cool</a><a class=tags href=#>modern</a><a class=tags href=#>hype-friendly</a></span>
-
-<!-- 				<a class=button href=#>Continue Reading</a>
-				<a class=button href=#>Edit</a>
-				<a class=button href=#>Delete</a> -->
 			</footer>
-		</article>
+		</article> -->
 
 		<ul>
 			{% for post in object_list %}
@@ -61,7 +57,8 @@
 						<a class=postMenu href="{% url 'article_detail' post.pk %}"><h1>{{post.title}}</h1></a>
 						<div class=comments>38</div>
 					</header>
-				<p>{{post.body | slice:":200" | safe}}</p>
+				<p>{{ post.snippet }}</p>
+				<!-- <p>{{post.body | slice:":200" | safe}}</p> -->
 				<footer>
 					<em>Written by:</em> <a href="{% url 'author_detail' post.pk %}"><strong>{{post.author.first_name}} {{post.author.last_name}} also known as '{{post.author}}'
 					</br> {{post.author.email}}</strong></a>
@@ -112,8 +109,9 @@
 				{% if user.is_authenticated %}
 
 					<span><h2>You are logged now as {{user}}</h2></span>
+					</br></br>
 					<a class=button href={% url 'logout' %} align='right'>Logout</a>
-
+					<a class=button href={% url 'edit_profile' %} align='left'>Edit profile</a>
 				{% else %}
 					<a class=button href={% url 'register' %} align='left'>Registration</a>
 					<a class=button href={% url 'login' %} align='right'>Login</a>
@@ -184,7 +182,7 @@
 			<p>Nisl vestibulum ex, quis lectus elit consequatur, per lobortis ipsum, sit in id nunc vitae felis. Ut quae pellentesque vitae vel ligula, non quis quis quam, ante orci lectus tortor sapien sed aliquam, neque nam vehicula.</p>
 			<p>Iaculis et quis, sociosqu aenean pulvinar metus, sed quis, sagittis a, at volutpat tempor.</p>
 		</section>
-	<p class=copyright>Copyright &copy; 2010 <strong>Fictive Company</strong>. All Rights Reserved.</p>
+	<p class=copyright>Copyright &copy; 2020 <strong>Yaroslav Ilyushin</strong>. All Rights NOT Reserved.</p>
 </footer>
 
 </body>

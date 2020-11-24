@@ -1,0 +1,23 @@
+{% extends 'bootstrap_base.html' %}
+
+<head>
+	{% load staticfiles %}
+	<link href='{% static "styles.css" %}' rel=stylesheet />
+	<title>
+		Edit profile
+	</title>
+</head>
+
+{% block body %}
+<h1>Register</h1>
+</br></br>
+
+<div class='form_group'>
+<form method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button>Update profile</button>
+</div>
+
+{% endblock %}
+

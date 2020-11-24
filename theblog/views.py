@@ -1,8 +1,29 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Category
 from .forms import PostForm, EditForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
+
+
+def LikeView(request, pk):
+    post = Post.objects.get(id=pk)
+
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        liked = False
+    else:
+        post.likes.add(request.user)
+        liked = True
+
+    # post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('article_detail', args=[str(pk)]))
+    #
+    # post = get_object_or_404(Post, id=request.POST.get('post.id'))
+    # post.likes.add(request.user)
+    # return HttpResponseRedirect(reverse('article_detail', args=[str(pk)]))
+    pass
 
 
 class HomeView(ListView):
@@ -29,6 +50,16 @@ def CategoryListView(request):
     pass
 
 
+# def FavoriteView(request, pk):
+#     # category_posts = Post.objects.filter(category=choices.replace("-", " "))
+#
+#     post = Post.objects.get(id=pk)
+#
+#     favorite_posts = Post.objects.filter(category=user)
+#     return render(request, 'categories.html', {'choices': choices, 'category_posts': category_posts})
+#     pass
+
+
 def CategoryView(request, choices):
     # category_posts = Post.objects.filter(category=choices.replace("-", " "))
     category_posts = Post.objects.filter(category=choices)
@@ -50,6 +81,24 @@ def ContactView(request):
 class ArticleDetailView(DetailView):
     model = Post
     template_name = "article_details.html"
+
+    def get_context_data(self, *args, **kwargs):
+        category_menu = Category.objects.all()
+        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
+
+        stuff = get_object_or_404(Post, id=self.kwargs['pk'])
+        total_likes = stuff.total_likes()
+
+        liked = False
+        if stuff.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        context['category_menu'] = category_menu
+        context['total_likes'] = total_likes
+        context['liked'] = liked
+        return context
+        pass
+
     pass
 
 

@@ -1,7 +1,7 @@
 <header>
 	<hgroup>
-		<h1><a href={% url 'home' %}>Fictive Company Blog</a></h1>
-		<h2>a blog showcasing the übercoolness of HTML5 &amp; CSS3</h2>
+		<h1><a href={% url 'home' %}>Easy Squezy Blog</a></h1>
+		<h2>a blog is mostly about JavaScript and Cars like Jimny</h2>
 	</hgroup>
 	<nav id=global>
 		<ul>
@@ -29,7 +29,7 @@
 					{% if user.is_authenticated %}
 						<li><a href="{% url 'add_post' %}">Make new post</a></li>
 						<li><a href="{% url 'add_category' %}">Make new category</a></li>
-						<li><a href=#>Desires</a></li>
+						<li><a href=#>My favourites</a></li>
 					{% else %}
 
 					{% endif %}

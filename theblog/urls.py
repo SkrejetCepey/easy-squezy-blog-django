@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from .views import HomeView, ArticleDetailView, AuthorDetailView, \
     AddPostView, UpdatePostView, DeletePostView, \
-    AddCategoryView, CategoryView, ContactView, CategoryListView
+    AddCategoryView, CategoryView, ContactView, CategoryListView, LikeView
 
 urlpatterns = [
     # path('', views.home, name="home"),
@@ -16,4 +16,6 @@ urlpatterns = [
     path('category/<str:choices>/', CategoryView, name="category"),
     path('contact/', ContactView, name="contact"),
     path('category_list/', CategoryListView, name="category_list"),
+    # path('favorites/<str:user>', FavoriteView(), name="favorites"),
+    path('like/<int:pk>', LikeView, name="like_post"),
 ]

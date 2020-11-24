@@ -20,12 +20,32 @@
 			</header>
 	<h1></h1>
 	<small>By: {{post.author.first_name}} {{post.author.last_name}}</small></br>
+	<small>Rating: {{total_likes}} likes!</small>
 	<hr>
 	{{post.body | safe}}
+
+	{% if user.is_authenticated %}
+	<form action="{% url 'like_post' post.pk %}" method="POST">
+		{% csrf_token %}
+		</br>
+
+		{% if liked %}
+			<button type="submit", name="post_id", value="{{ post.id }}">Unlike</button>
+		{% else %}
+			<button type="submit", name="post_id", value="{{ post.id }}">Like</button>
+		{% endif %}
+	</form>
+	{% else %}
+	</br></br>
+	<p><u>For likes, you need to <strong><a href="{% url 'login' %}">login</a></strong> to your account!</p>
+	<!-- <a href={% url "update_post" post.pk %} class='btn red'>Like</a> -->
+	{% endif %}
+
 </article>
 </br></br>
 
 <a href={% url 'home' %} class='btn red'>Back</a>
+
 {% if user.is_authenticated and post.author.id == user.id %}
 	<a href={% url "update_post" post.pk %} class='btn red'>Edit</a>
 	<a href={% url "delete_post" post.pk %} class='btn red'>Delete</a>
