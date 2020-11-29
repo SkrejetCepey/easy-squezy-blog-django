@@ -10,8 +10,13 @@
 
 {% block body %}
 <h1>Register</h1>
-</br></br>
 
+<!-- {% if user.profile.bio %}
+</br></br>
+{{ user.profile.bio }}
+{% endif %} -->
+
+</br></br>
 <div class='form_group'>
 <form method="POST">
 	{% csrf_token %}

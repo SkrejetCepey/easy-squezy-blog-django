@@ -1,3 +1,4 @@
+{% load static %}
 <head>
 	{% load staticfiles %}
 	<link href='{% static "styles.css" %}' rel=stylesheet />
@@ -8,8 +9,49 @@
 <h2>You are in Author_details now!</h2>
 
 <article>
-	<p>Nickname: {{post.author}}</p>
-	<p>FIO: {{post.author.first_name}} {{post.author.last_name}}</p>
+	<br/><br/>
+	<table>
+		<tr>
+			<td rowspan='5'>
+				{% if post.author.profile.profile_pic %}
+				<img src='{{ post.author.profile.profile_pic.url }}' width=200 height=200>
+				{% else %}
+				<img src='{% static "unnamed.jpg" %}' width=200 height=200>	
+				{% endif %}
+			</td>
+			<td>Nickname: {{ post.author }}</td>
+		</tr>
+		<tr>
+			<td>FirstName: {{post.author.first_name}}</td>
+		</tr>
+		<tr>
+			<td>LastName: {{post.author.last_name}}</td>
+		</tr>
+		<tr>
+			<td>ProfileBio: {{post.author.profile.bio}}</td>
+		</tr>
+		<tr>
+			<td>Links:
+			{% if post.author.profile.facebook_url %} 
+				<a href="{{post.author.profile.facebook_url}}">Facebook</a>
+			{% endif %}
+			{% if post.author.profile.twitter_url %}
+			 | <a href="{{post.author.profile.twitter_url}}">Twitter</a>
+			{% endif %} 
+			{% if post.author.profile.instagram_url %}
+			 | <a href="{{post.author.profile.instagram_url}}">Instagram</a>
+			{% endif %}
+			{% if post.author.profile.instagram_url %} 
+			 | <a href="{{post.author.profile.instagram_url}}">Pinterest</a>
+			{% endif %}
+			{% if post.author.profile.website_url %} 
+			 | <a href="{{post.author.profile.website_url}}">Website</a> 
+			{% endif %}
+			</td>
+		</tr>
+	</table>
+	<!-- <p>Nickname: {{post.author}}</p>
+	<p>FIO: {{post.author.first_name}} {{post.author.last_name}}</p> -->
 </article>
 </br></br>
 
