@@ -76,6 +76,43 @@
 			{% endfor %}
 		</ul>
 
+<article>
+<div class="pagination" align="center" style="font-size: 25px">
+
+    {% if page_obj.paginator.num_pages <= 5 %}
+
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">←</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+            <span class="current"><b>{{ num }}</b></span>
+        {% else %}
+            <a href="?page={{ num }}"> {{ num }}</a>
+        {% endif %} 
+    {% endfor %}
+ 
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">→</a>
+    {% endif %}
+
+    {% else %}
+
+    {% if page_obj.has_previous %}
+    	<a href="?page={{ page_obj.previous_page_number }}">←</a>
+    {% endif %}
+    <span class="current"><b>{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</b></span>
+    {% if page_obj.has_next %}
+    	<a href="?page={{ page_obj.next_page_number }}">→</a>
+    {% endif %}
+
+
+    {% endif %}
+ 
+</div>
+</article>
+
 <!-- 		<article>
 			<header>
 				<div class=time>

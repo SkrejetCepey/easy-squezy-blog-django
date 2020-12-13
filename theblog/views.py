@@ -4,6 +4,7 @@ from .models import Post, Category
 from .forms import PostForm, EditForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def LikeView(request, pk):
@@ -28,7 +29,11 @@ def LikeView(request, pk):
 
 class HomeView(ListView):
     model = Post
+    # paginator = Paginator(Post.objects.all(), 5)
     template_name = 'index.html'
+    paginate_by = 5
+    queryset = Post.objects.all()
+
     cats = Category.objects.all()
     # ordering = ['-id']
     # ordering = ['-post_date']
