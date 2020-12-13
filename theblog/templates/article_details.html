@@ -16,7 +16,7 @@
 					<div class=date>{{ post.post_date.day }}<span> {{ post.post_date | date:'M'}} </span></div>
 				</div>
 				<h1>{{post.title}}</h1>
-				<div class=comments>38</div>
+				<div class=comments>{{ post.comments.count }}</div>
 			</header>
 	<h1></h1>
 	<small>By: <a href="{% url 'author_detail' post.pk %}">{{post.author.first_name}} {{post.author.last_name}}</a></small></br>
@@ -43,6 +43,22 @@
 	</br></br>
 	<p><u>For likes, you need to <strong><a href="{% url 'login' %}">login</a></strong> to your account!</p>
 	<!-- <a href={% url "update_post" post.pk %} class='btn red'>Like</a> -->
+	{% endif %}
+	<br/><br/>
+
+	<header><h1>Comments</h1></header>
+	<a href="{% url 'add_comment' post.pk %}">Create new?</a>
+	</br><br/>
+	{% if not post.comments.all %}
+		<p>No one comment this post yet!
+			You can <a href="{% url 'add_comment' post.pk %}">make first!</a></p>
+	{% else %}
+		{% for comment in post.comments.all %}
+			<strong>{{ comment.name }} - {{ comment.date_added }}</strong>
+			<br/>
+			{{ comment.body }}
+			<br/><br/>
+		{% endfor %}
 	{% endif %}
 
 </article>

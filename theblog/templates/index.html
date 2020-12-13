@@ -55,7 +55,7 @@
 							<div class=date>{{ post.post_date.day }}<span> {{ post.post_date | date:'M'}} </span></div>
 						</div>
 						<a class=postMenu href="{% url 'article_detail' post.pk %}"><h1>{{post.title}}</h1></a>
-						<div class=comments>38</div>
+						<div class=comments>{{ post.comments.count }}</div>
 					</header>
 				<p>{{ post.snippet }}</p>
 				<!-- <p>{{post.body | slice:":200" | safe}}</p> -->
@@ -190,11 +190,7 @@
 		<section>
 			<h1>Popular Posts</h1>
 			<ul class=links>
-				<li><a href=#>Lacus suspendisse risus consequat nec nunc quis sed</a></li>
-				<li><a href=#>Diam turpis maecenas</a></li>
-				<li><a href=#>Leo egestas cursus erat sed curabitur</a></li>
-				<li><a href=#>Scelerisque maecenas id</a></li>
-				<li><a href=#>Ornare magna orci</a></li>
+				<li><a href=#>Stub for next updates</a></li>
 			</ul>
 		</section>
 		<section>
