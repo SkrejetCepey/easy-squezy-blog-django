@@ -2,5 +2,5 @@
 
 vvsu project
 
-available in heroku:
+available as prototype in heroku:
 https://damp-wave-58514.herokuapp.com/
